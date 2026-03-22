@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC0001 /* ChronicleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0002 /* ChronicleApp.swift */; };
+		CC0003 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0004 /* EventType.swift */; };
+		CC0005 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0006 /* AppEvent.swift */; };
+		CC0007 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0008 /* Session.swift */; };
+		CC0009 /* CuratedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0010 /* CuratedApps.swift */; };
+		CC0011 /* SessionComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0012 /* SessionComputer.swift */; };
+		CC0013 /* StatsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0014 /* StatsCalculator.swift */; };
+		CC0015 /* LogAppEventIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0016 /* LogAppEventIntent.swift */; };
+		CC0017 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0018 /* MainTabView.swift */; };
+		CC0019 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0020 /* OnboardingView.swift */; };
+		CC0021 /* ActivityLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0022 /* ActivityLogView.swift */; };
+		CC0023 /* ActivityLogRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0024 /* ActivityLogRow.swift */; };
+		CC0025 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0026 /* DashboardView.swift */; };
+		CC0027 /* UsageBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0028 /* UsageBarChart.swift */; };
+		CC0029 /* AppUsageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0030 /* AppUsageRow.swift */; };
+		CC0031 /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0032 /* AppDetailView.swift */; };
+		CC0033 /* SessionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0034 /* SessionRow.swift */; };
+		CC0035 /* SetupGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0036 /* SetupGuideView.swift */; };
+		CC0037 /* AppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0038 /* AppPickerView.swift */; };
+		CC0039 /* ShortcutGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0040 /* ShortcutGuideView.swift */; };
+		CC0041 /* HeroStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0042 /* HeroStatCard.swift */; };
+		CC0043 /* PeriodNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0044 /* PeriodNavigator.swift */; };
+		CC0045 /* AppIconSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0046 /* AppIconSquare.swift */; };
+		CC0047 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0048 /* ColorGenerator.swift */; };
+		CC0049 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0050 /* TimeFormatter.swift */; };
+		CC0051 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0052 /* DateHelpers.swift */; };
+		CC0090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0091 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CC0002 /* ChronicleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronicleApp.swift; sourceTree = "<group>"; };
+		CC0004 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		CC0006 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
+		CC0008 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		CC0010 /* CuratedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedApps.swift; sourceTree = "<group>"; };
+		CC0012 /* SessionComputer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionComputer.swift; sourceTree = "<group>"; };
+		CC0014 /* StatsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCalculator.swift; sourceTree = "<group>"; };
+		CC0016 /* LogAppEventIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAppEventIntent.swift; sourceTree = "<group>"; };
+		CC0018 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CC0020 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CC0022 /* ActivityLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogView.swift; sourceTree = "<group>"; };
+		CC0024 /* ActivityLogRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogRow.swift; sourceTree = "<group>"; };
+		CC0026 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		CC0028 /* UsageBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageBarChart.swift; sourceTree = "<group>"; };
+		CC0030 /* AppUsageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUsageRow.swift; sourceTree = "<group>"; };
+		CC0032 /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
+		CC0034 /* SessionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRow.swift; sourceTree = "<group>"; };
+		CC0036 /* SetupGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupGuideView.swift; sourceTree = "<group>"; };
+		CC0038 /* AppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPickerView.swift; sourceTree = "<group>"; };
+		CC0040 /* ShortcutGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutGuideView.swift; sourceTree = "<group>"; };
+		CC0042 /* HeroStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroStatCard.swift; sourceTree = "<group>"; };
+		CC0044 /* PeriodNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodNavigator.swift; sourceTree = "<group>"; };
+		CC0046 /* AppIconSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSquare.swift; sourceTree = "<group>"; };
+		CC0048 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
+		CC0050 /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
+		CC0052 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		CC0060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC0070 /* Chronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC0080 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC0100 = {
+			isa = PBXGroup;
+			children = (
+				CC0101 /* Chronicle */,
+				CC0102 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC0101 /* Chronicle */ = {
+			isa = PBXGroup;
+			children = (
+				CC0002 /* ChronicleApp.swift */,
+				CC0103 /* Models */,
+				CC0104 /* Services */,
+				CC0105 /* Intents */,
+				CC0106 /* Views */,
+				CC0113 /* Utilities */,
+				CC0091 /* Assets.xcassets */,
+				CC0060 /* Info.plist */,
+			);
+			path = Chronicle;
+			sourceTree = "<group>";
+		};
+		CC0102 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC0070 /* Chronicle.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC0103 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC0006 /* AppEvent.swift */,
+				CC0004 /* EventType.swift */,
+				CC0008 /* Session.swift */,
+				CC0010 /* CuratedApps.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CC0104 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CC0012 /* SessionComputer.swift */,
+				CC0014 /* StatsCalculator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CC0105 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				CC0016 /* LogAppEventIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		CC0106 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CC0018 /* MainTabView.swift */,
+				CC0020 /* OnboardingView.swift */,
+				CC0107 /* ActivityLog */,
+				CC0108 /* Dashboard */,
+				CC0109 /* AppDetail */,
+				CC0110 /* Setup */,
+				CC0111 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CC0107 /* ActivityLog */ = {
+			isa = PBXGroup;
+			children = (
+				CC0022 /* ActivityLogView.swift */,
+				CC0024 /* ActivityLogRow.swift */,
+			);
+			path = ActivityLog;
+			sourceTree = "<group>";
+		};
+		CC0108 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				CC0026 /* DashboardView.swift */,
+				CC0028 /* UsageBarChart.swift */,
+				CC0030 /* AppUsageRow.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		CC0109 /* AppDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CC0032 /* AppDetailView.swift */,
+				CC0034 /* SessionRow.swift */,
+			);
+			path = AppDetail;
+			sourceTree = "<group>";
+		};
+		CC0110 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				CC0036 /* SetupGuideView.swift */,
+				CC0038 /* AppPickerView.swift */,
+				CC0040 /* ShortcutGuideView.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		CC0111 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CC0042 /* HeroStatCard.swift */,
+				CC0044 /* PeriodNavigator.swift */,
+				CC0046 /* AppIconSquare.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CC0113 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CC0048 /* ColorGenerator.swift */,
+				CC0050 /* TimeFormatter.swift */,
+				CC0052 /* DateHelpers.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC0200 /* Chronicle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC0300 /* Build configuration list for PBXNativeTarget "Chronicle" */;
+			buildPhases = (
+				CC0201 /* Sources */,
+				CC0080 /* Frameworks */,
+				CC0202 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chronicle;
+			productName = Chronicle;
+			productReference = CC0070 /* Chronicle.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC0400 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = CC0500 /* Build configuration list for PBXProject "Chronicle" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC0100;
+			productRefGroup = CC0102 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC0200 /* Chronicle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC0202 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC0090 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC0201 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC0001 /* ChronicleApp.swift in Sources */,
+				CC0003 /* EventType.swift in Sources */,
+				CC0005 /* AppEvent.swift in Sources */,
+				CC0007 /* Session.swift in Sources */,
+				CC0009 /* CuratedApps.swift in Sources */,
+				CC0011 /* SessionComputer.swift in Sources */,
+				CC0013 /* StatsCalculator.swift in Sources */,
+				CC0015 /* LogAppEventIntent.swift in Sources */,
+				CC0017 /* MainTabView.swift in Sources */,
+				CC0019 /* OnboardingView.swift in Sources */,
+				CC0021 /* ActivityLogView.swift in Sources */,
+				CC0023 /* ActivityLogRow.swift in Sources */,
+				CC0025 /* DashboardView.swift in Sources */,
+				CC0027 /* UsageBarChart.swift in Sources */,
+				CC0029 /* AppUsageRow.swift in Sources */,
+				CC0031 /* AppDetailView.swift in Sources */,
+				CC0033 /* SessionRow.swift in Sources */,
+				CC0035 /* SetupGuideView.swift in Sources */,
+				CC0037 /* AppPickerView.swift in Sources */,
+				CC0039 /* ShortcutGuideView.swift in Sources */,
+				CC0041 /* HeroStatCard.swift in Sources */,
+				CC0043 /* PeriodNavigator.swift in Sources */,
+				CC0045 /* AppIconSquare.swift in Sources */,
+				CC0047 /* ColorGenerator.swift in Sources */,
+				CC0049 /* TimeFormatter.swift in Sources */,
+				CC0051 /* DateHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CC0301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Chronicle/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Chronicle;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aurende.chronicle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CC0302 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Chronicle/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Chronicle;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aurende.chronicle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		CC0501 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CC0502 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC0300 /* Build configuration list for PBXNativeTarget "Chronicle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC0301 /* Debug */,
+				CC0302 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC0500 /* Build configuration list for PBXProject "Chronicle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC0501 /* Debug */,
+				CC0502 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC0400 /* Project object */;
+}

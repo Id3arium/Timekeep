@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Users/alejandro/Projects/Code/Chronicle/build.sh)",
+      "Bash(xcodebuild -scheme Chronicle -project Chronicle.xcodeproj -destination \"generic/platform=iOS Simulator\" -quiet)"
+    ]
+  }
+}
