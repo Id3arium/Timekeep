@@ -10,7 +10,6 @@
 		CC0001 /* ChronicleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0002 /* ChronicleApp.swift */; };
 		CC0005 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0006 /* AppEvent.swift */; };
 		CC0007 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0008 /* Session.swift */; };
-		CC0009 /* CuratedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0010 /* CuratedApps.swift */; };
 		CC0011 /* SessionComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0012 /* SessionComputer.swift */; };
 		CC0013 /* StatsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0014 /* StatsCalculator.swift */; };
 		CC0015 /* LogAppEventIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0016 /* LogAppEventIntent.swift */; };
@@ -24,8 +23,6 @@
 		CC0031 /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0032 /* AppDetailView.swift */; };
 		CC0033 /* SessionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0034 /* SessionRow.swift */; };
 		CC0035 /* SetupGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0036 /* SetupGuideView.swift */; };
-		CC0037 /* AppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0038 /* AppPickerView.swift */; };
-		CC0039 /* ShortcutGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0040 /* ShortcutGuideView.swift */; };
 		CC0041 /* HeroStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0042 /* HeroStatCard.swift */; };
 		CC0043 /* PeriodNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0044 /* PeriodNavigator.swift */; };
 		CC0045 /* AppIconSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0046 /* AppIconSquare.swift */; };
@@ -33,7 +30,7 @@
 		CC0049 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0050 /* TimeFormatter.swift */; };
 		CC0051 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0052 /* DateHelpers.swift */; };
 		CC0053 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0054 /* AppShortcuts.swift */; };
-		CC0055 /* TrackedAppEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0056 /* TrackedAppEntity.swift */; };
+		CC0055 /* AppIconFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0056 /* AppIconFetcher.swift */; };
 		CC0090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0091 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +38,6 @@
 		CC0002 /* ChronicleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronicleApp.swift; sourceTree = "<group>"; };
 		CC0006 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
 		CC0008 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		CC0010 /* CuratedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedApps.swift; sourceTree = "<group>"; };
 		CC0012 /* SessionComputer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionComputer.swift; sourceTree = "<group>"; };
 		CC0014 /* StatsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCalculator.swift; sourceTree = "<group>"; };
 		CC0016 /* LogAppEventIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAppEventIntent.swift; sourceTree = "<group>"; };
@@ -55,8 +51,6 @@
 		CC0032 /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
 		CC0034 /* SessionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRow.swift; sourceTree = "<group>"; };
 		CC0036 /* SetupGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupGuideView.swift; sourceTree = "<group>"; };
-		CC0038 /* AppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPickerView.swift; sourceTree = "<group>"; };
-		CC0040 /* ShortcutGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutGuideView.swift; sourceTree = "<group>"; };
 		CC0042 /* HeroStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroStatCard.swift; sourceTree = "<group>"; };
 		CC0044 /* PeriodNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodNavigator.swift; sourceTree = "<group>"; };
 		CC0046 /* AppIconSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSquare.swift; sourceTree = "<group>"; };
@@ -66,7 +60,7 @@
 		CC0060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC0070 /* Chronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0054 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
-		CC0056 /* TrackedAppEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedAppEntity.swift; sourceTree = "<group>"; };
+		CC0056 /* AppIconFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconFetcher.swift; sourceTree = "<group>"; };
 		CC0091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,7 +111,6 @@
 			children = (
 				CC0006 /* AppEvent.swift */,
 				CC0008 /* Session.swift */,
-				CC0010 /* CuratedApps.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -127,6 +120,7 @@
 			children = (
 				CC0012 /* SessionComputer.swift */,
 				CC0014 /* StatsCalculator.swift */,
+				CC0056 /* AppIconFetcher.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -136,8 +130,7 @@
 			children = (
 				CC0016 /* LogAppEventIntent.swift */,
 				CC0054 /* AppShortcuts.swift */,
-				CC0056 /* TrackedAppEntity.swift */,
-			);
+);
 			path = Intents;
 			sourceTree = "<group>";
 		};
@@ -187,8 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				CC0036 /* SetupGuideView.swift */,
-				CC0038 /* AppPickerView.swift */,
-				CC0040 /* ShortcutGuideView.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -280,7 +271,6 @@
 				CC0001 /* ChronicleApp.swift in Sources */,
 				CC0005 /* AppEvent.swift in Sources */,
 				CC0007 /* Session.swift in Sources */,
-				CC0009 /* CuratedApps.swift in Sources */,
 				CC0011 /* SessionComputer.swift in Sources */,
 				CC0013 /* StatsCalculator.swift in Sources */,
 				CC0015 /* LogAppEventIntent.swift in Sources */,
@@ -294,8 +284,6 @@
 				CC0031 /* AppDetailView.swift in Sources */,
 				CC0033 /* SessionRow.swift in Sources */,
 				CC0035 /* SetupGuideView.swift in Sources */,
-				CC0037 /* AppPickerView.swift in Sources */,
-				CC0039 /* ShortcutGuideView.swift in Sources */,
 				CC0041 /* HeroStatCard.swift in Sources */,
 				CC0043 /* PeriodNavigator.swift in Sources */,
 				CC0045 /* AppIconSquare.swift in Sources */,
@@ -303,7 +291,7 @@
 				CC0049 /* TimeFormatter.swift in Sources */,
 				CC0051 /* DateHelpers.swift in Sources */,
 				CC0053 /* AppShortcuts.swift in Sources */,
-				CC0055 /* TrackedAppEntity.swift in Sources */,
+				CC0055 /* AppIconFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

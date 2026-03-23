@@ -46,8 +46,8 @@ struct OnboardingView: View {
             VStack(alignment: .leading, spacing: 20) {
                 featureRow(
                     icon: "arrow.triangle.branch",
-                    title: "Shortcuts Automations",
-                    description: "When you open an app, a Shortcuts automation tells Chronicle. One automation per app."
+                    title: "One Shortcut",
+                    description: "A single Shortcuts automation detects when you open any tracked app and tells Chronicle."
                 )
 
                 featureRow(
@@ -75,45 +75,37 @@ struct OnboardingView: View {
     }
 
     private var setupPage: some View {
-        NavigationStack {
-            VStack(spacing: 24) {
-                Spacer()
+        VStack(spacing: 24) {
+            Spacer()
 
-                Image(systemName: "gear.badge.checkmark")
-                    .font(.system(size: 48))
-                    .foregroundStyle(.blue)
+            Image(systemName: "gear.badge.checkmark")
+                .font(.system(size: 48))
+                .foregroundStyle(.blue)
 
-                Text("Quick Setup")
-                    .font(.title2.weight(.bold))
+            Text("One-Time Setup")
+                .font(.title2.weight(.bold))
 
-                Text("Pick the apps you want to track and follow the setup guide for each one. It takes about 30 seconds per app.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-
-                NavigationLink {
-                    AppPickerView()
-                } label: {
-                    Label("Choose apps to track", systemImage: "plus.circle.fill")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.blue, in: RoundedRectangle(cornerRadius: 14))
-                        .foregroundStyle(.white)
-                }
-                .padding(.horizontal)
-
-                Button("Skip for now") {
-                    hasCompletedOnboarding = true
-                }
+            Text("Create one automation in Shortcuts — it takes about a minute. You can always find these instructions again via the ⓘ button.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
 
-                Spacer()
+            Button {
+                hasCompletedOnboarding = true
+            } label: {
+                Text("Get Started")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(.blue, in: RoundedRectangle(cornerRadius: 14))
+                    .foregroundStyle(.white)
             }
-            .padding()
+            .padding(.horizontal)
+
+            Spacer()
         }
+        .padding()
     }
 
     private func featureRow(icon: String, title: String, description: String) -> some View {

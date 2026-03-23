@@ -15,10 +15,10 @@ struct SetupGuideView: View {
                             .font(.system(size: 48))
                             .foregroundStyle(.blue)
 
-                        Text("Track Your Screen Time")
+                        Text("One-Time Setup")
                             .font(.title2.weight(.bold))
 
-                        Text("For each app you want to track, you create one automation in Shortcuts — \"when this app opens, tell Chronicle.\" That's it.")
+                        Text("Create a single Shortcuts automation and Chronicle tracks every app you use.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -26,30 +26,17 @@ struct SetupGuideView: View {
                     }
                     .padding(.top)
 
-                    NavigationLink {
-                        AppPickerView()
-                    } label: {
-                        Label("Choose apps to track", systemImage: "plus.circle.fill")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(.blue, in: RoundedRectangle(cornerRadius: 14))
-                            .foregroundStyle(.white)
-                    }
-                    .padding(.horizontal)
-
-                    // Quick reference
+                    // Steps
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("How it works")
-                            .font(.headline)
-
                         stepRow(number: 1, text: "Open the **Shortcuts** app → **Automation** tab")
-                        stepRow(number: 2, text: "Tap **+** → **App** trigger")
-                        stepRow(number: 3, text: "Pick an app, check **Is Opened**, set **Run Immediately**")
-                        stepRow(number: 4, text: "Tap **New Blank Automation**")
-                        stepRow(number: 5, text: "Search for **\"Log App Event\"** (it's from Chronicle)")
-                        stepRow(number: 6, text: "Set the **App Name** to match the app")
-                        stepRow(number: 7, text: "Tap **Done** — repeat for each app you want to track")
+                        stepRow(number: 2, text: "Tap **+** → choose **App** as the trigger")
+                        stepRow(number: 3, text: "Tap **Choose** and select every app you want to track")
+                        stepRow(number: 4, text: "Make sure **Is Opened** is checked")
+                        stepRow(number: 5, text: "Set to **Run Immediately** → tap **New Blank Automation**")
+                        stepRow(number: 6, text: "Add a **Scripting** action: **Get Name of Current App**")
+                        stepRow(number: 7, text: "Add Chronicle's **\"Log App Event\"** action below it")
+                        stepRow(number: 8, text: "Set the **App Name** to the **Current App Name** variable from step 6")
+                        stepRow(number: 9, text: "Tap **Done**")
                     }
                     .padding()
                     .background(.quaternary.opacity(0.3), in: RoundedRectangle(cornerRadius: 16))
@@ -59,13 +46,14 @@ struct SetupGuideView: View {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "lightbulb.fill")
                             .foregroundStyle(.yellow)
-                        Text("**Tip:** \"Log App Event\" appears automatically in Shortcuts because Chronicle registers it as an App Intent. No setup needed — just search for it when adding an action.")
+                        Text("**To track new apps later**, just edit this automation and add more apps to the trigger.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
                     .padding()
                     .background(.yellow.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
                     .padding(.horizontal)
+
                     // Delete all data
                     Button(role: .destructive) {
                         showingDeleteConfirmation = true

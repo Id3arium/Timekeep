@@ -14,7 +14,7 @@ struct UsageBarChart: View {
                 ForEach(0..<24, id: \.self) { hour in
                     let minutes = (hourlyData[hour] ?? 0) / 60
                     BarMark(
-                        x: .value("Hour", hourLabel(hour)),
+                        x: .value("Hour", hour),
                         y: .value("Minutes", minutes)
                     )
                     .foregroundStyle(isCurrentHour(hour) ? accentColor.opacity(0.4) : accentColor)
@@ -23,7 +23,7 @@ struct UsageBarChart: View {
                 ForEach(weekdayEntries, id: \.weekday) { entry in
                     let minutes = entry.time / 60
                     BarMark(
-                        x: .value("Day", entry.label),
+                        x: .value("Day", entry.weekday),
                         y: .value("Minutes", minutes)
                     )
                     .foregroundStyle(isToday(entry.weekday) ? accentColor.opacity(0.4) : accentColor)
@@ -37,11 +37,28 @@ struct UsageBarChart: View {
             }
         }
         .chartXAxis {
-            AxisMarks(values: .automatic) { _ in
-                AxisValueLabel()
-                    .font(.caption2)
+            switch mode {
+            case .daily:
+                AxisMarks(values: [0, 6, 12, 18, 23]) { value in
+                    AxisValueLabel {
+                        if let hour = value.as(Int.self) {
+                            Text(hourLabel(hour))
+                                .font(.caption2)
+                        }
+                    }
+                }
+            case .weekly:
+                AxisMarks(values: Array(1...7)) { value in
+                    AxisValueLabel {
+                        if let day = value.as(Int.self) {
+                            Text(weekdayLabel(day))
+                                .font(.caption2)
+                        }
+                    }
+                }
             }
         }
+        .chartXScale(domain: mode == .daily ? 0...23 : 1...7)
         .chartYAxis {
             AxisMarks { value in
                 AxisGridLine()
@@ -63,6 +80,11 @@ struct UsageBarChart: View {
         return "\(hour - 12)p"
     }
 
+    private func weekdayLabel(_ weekday: Int) -> String {
+        let labels = ["", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        return labels[weekday]
+    }
+
     private func isCurrentHour(_ hour: Int) -> Bool {
         Calendar.current.component(.hour, from: .now) == hour
     }
@@ -73,16 +95,13 @@ struct UsageBarChart: View {
 
     private struct WeekdayEntry {
         let weekday: Int
-        let label: String
         let time: TimeInterval
     }
 
     private var weekdayEntries: [WeekdayEntry] {
-        let labels = ["S", "M", "T", "W", "T", "F", "S"]
-        return (1...7).map { day in
+        (1...7).map { day in
             WeekdayEntry(
                 weekday: day,
-                label: labels[day - 1],
                 time: dailyData[day] ?? 0
             )
         }
