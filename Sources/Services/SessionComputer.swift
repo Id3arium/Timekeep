@@ -5,8 +5,8 @@ enum SessionComputer {
     private static let orphanTimeout: TimeInterval = 4 * 60 * 60
 
     /// Computes sessions from raw AppEvent data.
-    /// Events should span the full date range of interest plus some buffer before/after
-    /// to correctly handle sessions that cross boundaries.
+    /// Each event means "this app came to foreground." A session for app A ends
+    /// when a different app B fires, or when the orphan timeout is reached.
     static func computeSessions(from events: [AppEvent]) -> [Session] {
         let sorted = events.sorted { $0.timestamp < $1.timestamp }
 
@@ -14,23 +14,9 @@ enum SessionComputer {
         var currentlyOpen: (app: String, event: AppEvent)?
 
         for event in sorted {
-            switch event.eventType {
-            case .opened:
-                // If another app was open, close its session (estimated)
-                if let open = currentlyOpen {
-                    sessions.append(Session(
-                        id: open.event.id,
-                        appName: open.app,
-                        startTime: open.event.timestamp,
-                        endTime: event.timestamp,
-                        isEstimated: true,
-                        isActive: false
-                    ))
-                }
-                currentlyOpen = (app: event.appName, event: event)
-
-            case .closed:
-                if let open = currentlyOpen, open.app == event.appName {
+            if let open = currentlyOpen {
+                if open.app != event.appName {
+                    // Different app opened — close the previous session
                     sessions.append(Session(
                         id: open.event.id,
                         appName: open.app,
@@ -39,17 +25,34 @@ enum SessionComputer {
                         isEstimated: false,
                         isActive: false
                     ))
-                    currentlyOpen = nil
+                    currentlyOpen = (app: event.appName, event: event)
+                } else {
+                    // Same app fired again — could be a re-focus. Keep the original start time
+                    // unless the gap is large enough to be a new session.
+                    let gap = event.timestamp.timeIntervalSince(open.event.timestamp)
+                    if gap > debounceWindow {
+                        // Treat as a new session (implies the app was backgrounded and came back)
+                        sessions.append(Session(
+                            id: open.event.id,
+                            appName: open.app,
+                            startTime: open.event.timestamp,
+                            endTime: event.timestamp,
+                            isEstimated: true,
+                            isActive: false
+                        ))
+                        currentlyOpen = (app: event.appName, event: event)
+                    }
+                    // If within debounce window, just ignore the duplicate
                 }
-                // Ignore orphaned close events (no matching open)
+            } else {
+                currentlyOpen = (app: event.appName, event: event)
             }
         }
 
-        // Handle currently open app (no close event yet)
+        // Handle the last open app
         if let open = currentlyOpen {
             let age = Date.now.timeIntervalSince(open.event.timestamp)
             if age > orphanTimeout {
-                // Too old — orphaned, unknown duration
                 sessions.append(Session(
                     id: open.event.id,
                     appName: open.app,
@@ -59,7 +62,6 @@ enum SessionComputer {
                     isActive: false
                 ))
             } else {
-                // Still active
                 sessions.append(Session(
                     id: open.event.id,
                     appName: open.app,
@@ -93,7 +95,6 @@ enum SessionComputer {
                     }
 
                     if gap < debounceWindow && gap >= 0 {
-                        // Merge: extend previous session to cover this one
                         current = Session(
                             id: prev.id,
                             appName: prev.appName,

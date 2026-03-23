@@ -23,7 +23,9 @@ struct AppPickerView: View {
                         .textInputAutocapitalization(.words)
 
                     if !customAppName.trimmingCharacters(in: .whitespaces).isEmpty {
-                        NavigationLink(value: customAppName.trimmingCharacters(in: .whitespaces)) {
+                        NavigationLink {
+                            guideView(for: customAppName.trimmingCharacters(in: .whitespaces))
+                        } label: {
                             Text("Add")
                                 .font(.subheadline.weight(.medium))
                         }
@@ -34,7 +36,9 @@ struct AppPickerView: View {
             ForEach(filteredCategories, id: \.category) { group in
                 Section(group.category) {
                     ForEach(group.apps) { app in
-                        NavigationLink(value: app.name) {
+                        NavigationLink {
+                            guideView(for: app.name)
+                        } label: {
                             HStack(spacing: 12) {
                                 AppIconSquare(appName: app.name, size: 32)
                                 Text(app.name)
@@ -48,11 +52,12 @@ struct AppPickerView: View {
         .searchable(text: $searchText, prompt: "Search apps")
         .navigationTitle("Add app")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(for: String.self) { appName in
-            ShortcutGuideView(appName: appName, isFirstTime: !hasSetupFirstApp)
-                .onDisappear {
-                    hasSetupFirstApp = true
-                }
-        }
+    }
+
+    private func guideView(for appName: String) -> some View {
+        ShortcutGuideView(appName: appName, isFirstTime: !hasSetupFirstApp)
+            .onDisappear {
+                hasSetupFirstApp = true
+            }
     }
 }

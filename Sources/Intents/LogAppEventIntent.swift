@@ -3,18 +3,19 @@ import SwiftData
 
 struct LogAppEventIntent: AppIntent {
     static var title: LocalizedStringResource = "Log App Event"
-    static var description: IntentDescription = "Records when an app is opened or closed for screen time tracking"
+    static var description: IntentDescription = "Records that an app was opened, for screen time tracking"
 
-    @Parameter(title: "App Name")
-    var appName: String
+    @Parameter(title: "App")
+    var app: TrackedAppEntity
 
-    @Parameter(title: "Event Type")
-    var eventType: EventType
+    static var parameterSummary: some ParameterSummary {
+        Summary("Log \(\.$app) was opened")
+    }
 
     func perform() async throws -> some IntentResult {
         let container = try ModelContainer(for: AppEvent.self)
         let context = ModelContext(container)
-        let event = AppEvent(appName: appName, eventType: eventType, timestamp: .now)
+        let event = AppEvent(appName: app.name, timestamp: .now)
         context.insert(event)
         try context.save()
         return .result()

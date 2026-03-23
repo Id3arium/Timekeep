@@ -1,7 +1,10 @@
 import SwiftUI
+import SwiftData
 
 struct SetupGuideView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+    @State private var showingDeleteConfirmation = false
 
     var body: some View {
         NavigationStack {
@@ -15,7 +18,7 @@ struct SetupGuideView: View {
                         Text("Track Your Screen Time")
                             .font(.title2.weight(.bold))
 
-                        Text("For each app you want to track, you create two automations in the Shortcuts app — one for when it opens, one for when it closes.")
+                        Text("For each app you want to track, you create one automation in Shortcuts — \"when this app opens, tell Chronicle.\" That's it.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -45,8 +48,8 @@ struct SetupGuideView: View {
                         stepRow(number: 3, text: "Pick an app, check **Is Opened**, set **Run Immediately**")
                         stepRow(number: 4, text: "Tap **New Blank Automation**")
                         stepRow(number: 5, text: "Search for **\"Log App Event\"** (it's from Chronicle)")
-                        stepRow(number: 6, text: "Set the **App Name** and **Event Type → Opened**")
-                        stepRow(number: 7, text: "Tap **Done**, then repeat for **Is Closed**")
+                        stepRow(number: 6, text: "Set the **App Name** to match the app")
+                        stepRow(number: 7, text: "Tap **Done** — repeat for each app you want to track")
                     }
                     .padding()
                     .background(.quaternary.opacity(0.3), in: RoundedRectangle(cornerRadius: 16))
@@ -63,8 +66,28 @@ struct SetupGuideView: View {
                     .padding()
                     .background(.yellow.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
                     .padding(.horizontal)
+                    // Delete all data
+                    Button(role: .destructive) {
+                        showingDeleteConfirmation = true
+                    } label: {
+                        Label("Delete All Data", systemImage: "trash")
+                            .font(.subheadline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.red.opacity(0.1), in: RoundedRectangle(cornerRadius: 14))
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 8)
                 }
                 .padding(.bottom, 32)
+            }
+            .alert("Delete All Data?", isPresented: $showingDeleteConfirmation) {
+                Button("Delete", role: .destructive) {
+                    deleteAllData()
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This will permanently delete all recorded app events and sessions. This cannot be undone.")
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -73,6 +96,15 @@ struct SetupGuideView: View {
                     }
                 }
             }
+        }
+    }
+
+    private func deleteAllData() {
+        do {
+            try modelContext.delete(model: AppEvent.self)
+            try modelContext.save()
+        } catch {
+            print("Failed to delete data: \(error)")
         }
     }
 

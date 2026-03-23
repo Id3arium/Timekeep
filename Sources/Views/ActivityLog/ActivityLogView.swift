@@ -47,9 +47,7 @@ struct ActivityLogView: View {
             }
         }
         .sheet(isPresented: $showingSetup) {
-            NavigationStack {
-                SetupGuideView()
-            }
+            SetupGuideView()
         }
     }
 

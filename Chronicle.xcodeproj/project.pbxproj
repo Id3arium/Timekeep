@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CC0001 /* ChronicleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0002 /* ChronicleApp.swift */; };
-		CC0003 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0004 /* EventType.swift */; };
 		CC0005 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0006 /* AppEvent.swift */; };
 		CC0007 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0008 /* Session.swift */; };
 		CC0009 /* CuratedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0010 /* CuratedApps.swift */; };
@@ -34,12 +33,12 @@
 		CC0049 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0050 /* TimeFormatter.swift */; };
 		CC0051 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0052 /* DateHelpers.swift */; };
 		CC0053 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0054 /* AppShortcuts.swift */; };
+		CC0055 /* TrackedAppEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0056 /* TrackedAppEntity.swift */; };
 		CC0090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0091 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CC0002 /* ChronicleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronicleApp.swift; sourceTree = "<group>"; };
-		CC0004 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		CC0006 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
 		CC0008 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CC0010 /* CuratedApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuratedApps.swift; sourceTree = "<group>"; };
@@ -67,6 +66,7 @@
 		CC0060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC0070 /* Chronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0054 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
+		CC0056 /* TrackedAppEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedAppEntity.swift; sourceTree = "<group>"; };
 		CC0091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				CC0006 /* AppEvent.swift */,
-				CC0004 /* EventType.swift */,
 				CC0008 /* Session.swift */,
 				CC0010 /* CuratedApps.swift */,
 			);
@@ -137,6 +136,7 @@
 			children = (
 				CC0016 /* LogAppEventIntent.swift */,
 				CC0054 /* AppShortcuts.swift */,
+				CC0056 /* TrackedAppEntity.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -278,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0001 /* ChronicleApp.swift in Sources */,
-				CC0003 /* EventType.swift in Sources */,
 				CC0005 /* AppEvent.swift in Sources */,
 				CC0007 /* Session.swift in Sources */,
 				CC0009 /* CuratedApps.swift in Sources */,
@@ -304,6 +303,7 @@
 				CC0049 /* TimeFormatter.swift in Sources */,
 				CC0051 /* DateHelpers.swift in Sources */,
 				CC0053 /* AppShortcuts.swift in Sources */,
+				CC0055 /* TrackedAppEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

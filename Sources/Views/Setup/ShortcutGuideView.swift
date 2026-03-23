@@ -16,7 +16,7 @@ struct ShortcutGuideView: View {
                     VStack(alignment: .leading) {
                         Text(appName)
                             .font(.title2.weight(.bold))
-                        Text("2 automations needed")
+                        Text("1 automation needed")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -24,12 +24,10 @@ struct ShortcutGuideView: View {
 
                 // Copy-friendly parameter card
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Use these exact values:")
+                    Text("Use this exact value:")
                         .font(.subheadline.weight(.medium))
 
                     copyRow(label: "App Name", value: appName)
-                    copyRow(label: "Event Type (1st)", value: "Opened")
-                    copyRow(label: "Event Type (2nd)", value: "Closed")
                 }
                 .padding()
                 .background(.quaternary.opacity(0.3), in: RoundedRectangle(cornerRadius: 16))
@@ -82,8 +80,8 @@ struct ShortcutGuideView: View {
     }
 
     private var detailedSteps: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Automation 1: Opened")
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Create the automation")
                 .font(.headline)
 
             numberedSteps([
@@ -92,18 +90,18 @@ struct ShortcutGuideView: View {
                 "Select **\(appName)**, check **Is Opened**",
                 "Set to **Run Immediately**, tap **New Blank Automation**",
                 "Search for **\"Log App Event\"** and add it",
-                "Set App Name to **\(appName)** and Event Type to **Opened**",
+                "Set App Name to **\(appName)**",
                 "Tap **Done**",
             ])
 
-            Divider()
-
-            Text("Automation 2: Closed")
-                .font(.headline)
-
-            Text("Same steps, but select **Is Closed** as the trigger and set Event Type to **Closed**.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+            HStack(alignment: .top, spacing: 8) {
+                Image(systemName: "info.circle")
+                    .foregroundStyle(.blue)
+                Text("Chronicle figures out when you leave an app by seeing when you open the next one — so you only need one automation per app.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.top, 4)
         }
     }
 
@@ -112,23 +110,9 @@ struct ShortcutGuideView: View {
             Text("Quick reminder")
                 .font(.headline)
 
-            Text("Create 2 automations in Shortcuts:")
+            Text("App → \(appName) → **Is Opened** → Run Immediately → **Log App Event** → \(appName)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-
-            HStack(alignment: .top, spacing: 8) {
-                Text("1.")
-                    .font(.subheadline.weight(.medium))
-                Text("App → \(appName) → **Is Opened** → Log App Event → **Opened**")
-                    .font(.subheadline)
-            }
-
-            HStack(alignment: .top, spacing: 8) {
-                Text("2.")
-                    .font(.subheadline.weight(.medium))
-                Text("App → \(appName) → **Is Closed** → Log App Event → **Closed**")
-                    .font(.subheadline)
-            }
         }
     }
 
@@ -151,7 +135,7 @@ struct ShortcutGuideView: View {
         HStack(alignment: .top, spacing: 8) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .foregroundStyle(.yellow)
-            Text("Both automations must be set to **Run Immediately** — otherwise you'll get a popup every time you switch apps.")
+            Text("The automation must be set to **Run Immediately** — otherwise you'll get a confirmation popup every time you open the app.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }

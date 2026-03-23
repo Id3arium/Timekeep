@@ -47,13 +47,13 @@ struct OnboardingView: View {
                 featureRow(
                     icon: "arrow.triangle.branch",
                     title: "Shortcuts Automations",
-                    description: "When you open or close an app, a Shortcuts automation sends the event to Chronicle."
+                    description: "When you open an app, a Shortcuts automation tells Chronicle. One automation per app."
                 )
 
                 featureRow(
                     icon: "clock",
                     title: "Session Tracking",
-                    description: "Chronicle pairs open/close events to calculate how long you spent in each app."
+                    description: "Chronicle figures out when you left an app by seeing when you opened the next one."
                 )
 
                 featureRow(
