@@ -33,6 +33,7 @@
 		CC0047 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0048 /* ColorGenerator.swift */; };
 		CC0049 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0050 /* TimeFormatter.swift */; };
 		CC0051 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0052 /* DateHelpers.swift */; };
+		CC0053 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0054 /* AppShortcuts.swift */; };
 		CC0090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0091 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		CC0052 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 		CC0060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC0070 /* Chronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC0054 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
 		CC0091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +89,7 @@
 			);
 			sourceTree = "<group>";
 		};
-		CC0101 /* Chronicle */ = {
+		CC0101 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				CC0002 /* ChronicleApp.swift */,
@@ -99,7 +101,7 @@
 				CC0091 /* Assets.xcassets */,
 				CC0060 /* Info.plist */,
 			);
-			path = Chronicle;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CC0102 /* Products */ = {
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0016 /* LogAppEventIntent.swift */,
+				CC0054 /* AppShortcuts.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				CC0047 /* ColorGenerator.swift in Sources */,
 				CC0049 /* TimeFormatter.swift in Sources */,
 				CC0051 /* DateHelpers.swift in Sources */,
+				CC0053 /* AppShortcuts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +323,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Chronicle/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Chronicle;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -356,7 +360,7 @@
 				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Chronicle/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Chronicle;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

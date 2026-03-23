@@ -8,6 +8,11 @@ struct CuratedApp: Identifiable {
 
 enum CuratedApps {
     static let all: [CuratedApp] = [
+        // Browsing
+        CuratedApp(name: "Safari", category: "Browsing"),
+        CuratedApp(name: "Chrome", category: "Browsing"),
+        CuratedApp(name: "Firefox", category: "Browsing"),
+        
         // Social
         CuratedApp(name: "Twitter", category: "Social"),
         CuratedApp(name: "Instagram", category: "Social"),
@@ -36,11 +41,6 @@ enum CuratedApps {
         CuratedApp(name: "Discord", category: "Messaging"),
         CuratedApp(name: "Slack", category: "Messaging"),
         CuratedApp(name: "Signal", category: "Messaging"),
-
-        // Browsing
-        CuratedApp(name: "Safari", category: "Browsing"),
-        CuratedApp(name: "Chrome", category: "Browsing"),
-        CuratedApp(name: "Firefox", category: "Browsing"),
 
         // Productivity
         CuratedApp(name: "Mail", category: "Productivity"),
