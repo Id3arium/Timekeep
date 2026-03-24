@@ -7,8 +7,6 @@ struct AppDetailView: View {
     @Query(sort: \AppEvent.timestamp, order: .forward) private var events: [AppEvent]
     @State private var mode: PeriodMode = .daily
     @State private var selectedDate: Date = .now
-    @State private var showDateNav = false
-
     private var earliestDate: Date? {
         events.first?.timestamp
     }
@@ -88,11 +86,8 @@ struct AppDetailView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
 
-                if showDateNav {
-                    dateNavigator
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                        .padding(.horizontal)
-                }
+                dateNavigator
+                    .padding(.horizontal)
 
                 // Chart date label + hero stat
                 VStack(spacing: 4) {
@@ -112,11 +107,6 @@ struct AppDetailView: View {
                                 .font(.caption)
                         }
                         .foregroundStyle(isUp ? .red : .green)
-                    }
-                }
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.25)) {
-                        showDateNav.toggle()
                     }
                 }
 

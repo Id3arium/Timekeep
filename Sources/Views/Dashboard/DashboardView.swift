@@ -5,8 +5,6 @@ struct DashboardView: View {
     @Query(sort: \AppEvent.timestamp, order: .forward) private var events: [AppEvent]
     @State private var mode: PeriodMode = .daily
     @State private var selectedDate: Date = .now
-    @State private var showDateNav = false
-
     private var earliestDate: Date? {
         events.first?.timestamp
     }
@@ -56,12 +54,8 @@ struct DashboardView: View {
                 .pickerStyle(.segmented)
                 .padding(.horizontal)
 
-                // Date nav — revealed on scroll or tap
-                if showDateNav {
-                    dateNavigator
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                        .padding(.horizontal)
-                }
+                dateNavigator
+                    .padding(.horizontal)
 
                 // Chart date label + hero stat
                 VStack(spacing: 4) {
@@ -71,11 +65,6 @@ struct DashboardView: View {
 
                     Text(TimeFormatter.format(stats.totalScreenTime))
                         .font(.system(size: 34, weight: .bold, design: .rounded))
-                }
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.25)) {
-                        showDateNav.toggle()
-                    }
                 }
 
                 UsageBarChart(
