@@ -21,11 +21,11 @@ struct ActivityLogRow: View {
                 } else if let duration = session.duration {
                     Text(session.isEstimated ? "~\(TimeFormatter.format(duration))" : TimeFormatter.format(duration))
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
                 } else {
                     Text("?")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
                 }
             }
 
@@ -33,7 +33,7 @@ struct ActivityLogRow: View {
 
             Text(TimeFormatter.timeString(session.startTime))
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(ColorGenerator.subtitleColor)
         }
         .padding(.vertical, 2)
     }

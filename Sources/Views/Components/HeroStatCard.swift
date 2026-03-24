@@ -9,7 +9,7 @@ struct HeroStatCard: View {
         VStack(spacing: 4) {
             Text(label)
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(ColorGenerator.subtitleColor)
 
             Text(value)
                 .font(.system(size: 34, weight: .bold, design: .rounded))

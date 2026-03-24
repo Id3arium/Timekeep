@@ -15,7 +15,7 @@ struct AppUsageRow: View {
                     Spacer()
                     Text(TimeFormatter.format(stats.totalTime))
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
                 }
 
                 GeometryReader { geo in

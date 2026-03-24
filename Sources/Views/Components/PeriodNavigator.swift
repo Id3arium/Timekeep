@@ -8,6 +8,7 @@ enum PeriodMode: String, CaseIterable {
 struct PeriodNavigator: View {
     @Binding var mode: PeriodMode
     @Binding var selectedDate: Date
+    var earliestDate: Date? = nil
 
     var body: some View {
         VStack(spacing: 12) {
@@ -25,6 +26,7 @@ struct PeriodNavigator: View {
                     Image(systemName: "chevron.left")
                         .font(.body.weight(.semibold))
                 }
+                .disabled(isEarliestPeriod)
 
                 Spacer()
 
@@ -62,6 +64,18 @@ struct PeriodNavigator: View {
                 DateHelpers.startOfWeek(selectedDate),
                 inSameDayAs: DateHelpers.startOfWeek(.now)
             )
+        }
+    }
+
+    private var isEarliestPeriod: Bool {
+        guard let earliest = earliestDate else { return false }
+        let calendar = Calendar.current
+        switch mode {
+        case .daily:
+            return calendar.isDate(selectedDate, inSameDayAs: earliest)
+                || selectedDate < earliest
+        case .weekly:
+            return DateHelpers.startOfWeek(selectedDate) <= DateHelpers.startOfWeek(earliest)
         }
     }
 

@@ -21,17 +21,17 @@ struct SessionRow: View {
                 } else {
                     Text("?")
                         .font(.body.weight(.medium))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
                 }
 
                 if let endTime = session.endTime {
                     Text(TimeFormatter.timeRange(from: session.startTime, to: endTime))
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
                 } else {
                     Text("Started \(TimeFormatter.timeString(session.startTime))")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
                 }
             }
 

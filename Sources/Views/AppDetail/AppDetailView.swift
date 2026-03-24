@@ -4,9 +4,14 @@ import SwiftData
 struct AppDetailView: View {
     let appName: String
 
-    @Query(sort: \AppEvent.timestamp, order: .reverse) private var events: [AppEvent]
+    @Query(sort: \AppEvent.timestamp, order: .forward) private var events: [AppEvent]
     @State private var mode: PeriodMode = .daily
     @State private var selectedDate: Date = .now
+    @State private var showDateNav = false
+
+    private var earliestDate: Date? {
+        events.first?.timestamp
+    }
 
     private var allSessions: [Session] {
         SessionComputer.computeSessions(from: Array(events))
@@ -57,17 +62,63 @@ struct AppDetailView: View {
         )
     }
 
+    private var chartDateLabel: String {
+        switch mode {
+        case .daily:
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEE, MMMM d"
+            return formatter.string(from: selectedDate)
+        case .weekly:
+            let start = DateHelpers.startOfWeek(selectedDate)
+            let end = Calendar.current.date(byAdding: .day, value: 6, to: start)!
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM d"
+            return "\(formatter.string(from: start)) – \(formatter.string(from: end))"
+        }
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                PeriodNavigator(mode: $mode, selectedDate: $selectedDate)
-                    .padding(.horizontal)
+                Picker("Period", selection: $mode) {
+                    ForEach(PeriodMode.allCases, id: \.self) { m in
+                        Text(m.rawValue).tag(m)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
 
-                HeroStatCard(
-                    label: "Daily average",
-                    value: TimeFormatter.format(dailyAverage),
-                    percentChange: percentChange
-                )
+                if showDateNav {
+                    dateNavigator
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .padding(.horizontal)
+                }
+
+                // Chart date label + hero stat
+                VStack(spacing: 4) {
+                    Text(chartDateLabel)
+                        .font(.subheadline)
+                        .foregroundStyle(ColorGenerator.subtitleColor)
+
+                    Text(TimeFormatter.format(dailyAverage))
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+
+                    if let change = percentChange {
+                        let isUp = change > 0
+                        HStack(spacing: 2) {
+                            Image(systemName: isUp ? "arrow.up.right" : "arrow.down.right")
+                                .font(.caption2)
+                            Text("\(abs(Int(change)))% from last period")
+                                .font(.caption)
+                        }
+                        .foregroundStyle(isUp ? .red : .green)
+                    }
+                }
+                .onTapGesture {
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        showDateNav.toggle()
+                    }
+                }
 
                 UsageBarChart(
                     mode: mode,
@@ -115,6 +166,77 @@ struct AppDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
+    private var dateNavigator: some View {
+        HStack {
+            Button {
+                navigate(by: -1)
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.body.weight(.semibold))
+            }
+            .disabled(isEarliestPeriod)
+
+            Spacer()
+
+            Text(periodLabel)
+                .font(.subheadline.weight(.medium))
+
+            Spacer()
+
+            Button {
+                navigate(by: 1)
+            } label: {
+                Image(systemName: "chevron.right")
+                    .font(.body.weight(.semibold))
+            }
+            .disabled(isCurrentPeriod)
+        }
+        .padding(.horizontal, 4)
+    }
+
+    private var periodLabel: String {
+        switch mode {
+        case .daily: DateHelpers.dayLabel(for: selectedDate)
+        case .weekly: DateHelpers.weekLabel(for: selectedDate)
+        }
+    }
+
+    private var isCurrentPeriod: Bool {
+        let calendar = Calendar.current
+        switch mode {
+        case .daily:
+            return calendar.isDateInToday(selectedDate)
+        case .weekly:
+            return calendar.isDate(
+                DateHelpers.startOfWeek(selectedDate),
+                inSameDayAs: DateHelpers.startOfWeek(.now)
+            )
+        }
+    }
+
+    private var isEarliestPeriod: Bool {
+        guard let earliest = earliestDate else { return true }
+        let calendar = Calendar.current
+        switch mode {
+        case .daily:
+            return calendar.isDate(selectedDate, inSameDayAs: earliest)
+                || selectedDate < earliest
+        case .weekly:
+            return DateHelpers.startOfWeek(selectedDate) <= DateHelpers.startOfWeek(earliest)
+        }
+    }
+
+    private func navigate(by offset: Int) {
+        withAnimation {
+            switch mode {
+            case .daily:
+                selectedDate = DateHelpers.offsetDay(selectedDate, by: offset)
+            case .weekly:
+                selectedDate = DateHelpers.offsetWeek(selectedDate, by: offset)
+            }
+        }
+    }
+
     private var todaySessions: [Session] {
         let daySessions: [Session]
         switch mode {
@@ -149,7 +271,7 @@ struct AppDetailView: View {
                 .font(.title3.weight(.semibold))
             Text(label)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(ColorGenerator.subtitleColor)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)

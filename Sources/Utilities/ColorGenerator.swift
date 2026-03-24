@@ -36,6 +36,9 @@ enum ColorGenerator {
         return String(letters)
     }
 
+    /// Subdued text color — slightly lighter than .secondary for dark backgrounds
+    static let subtitleColor = Color(white: 0.55)
+
     private static func djb2(_ string: String) -> UInt {
         var hash: UInt = 5381
         for char in string.utf8 {
