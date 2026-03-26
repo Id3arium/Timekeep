@@ -31,6 +31,8 @@
 		CC0051 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0052 /* DateHelpers.swift */; };
 		CC0053 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0054 /* AppShortcuts.swift */; };
 		CC0055 /* AppIconFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0056 /* AppIconFetcher.swift */; };
+		CC0057 /* EventLogDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0058 /* EventLogDebugView.swift */; };
+		CC0059 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0061 /* EventType.swift */; };
 		CC0090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0091 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		CC0070 /* Chronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0054 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
 		CC0056 /* AppIconFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconFetcher.swift; sourceTree = "<group>"; };
+		CC0058 /* EventLogDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogDebugView.swift; sourceTree = "<group>"; };
+		CC0061 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		CC0091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0006 /* AppEvent.swift */,
+				CC0061 /* EventType.swift */,
 				CC0008 /* Session.swift */,
 			);
 			path = Models;
@@ -180,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0036 /* SetupGuideView.swift */,
+				CC0058 /* EventLogDebugView.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -292,6 +298,8 @@
 				CC0051 /* DateHelpers.swift in Sources */,
 				CC0053 /* AppShortcuts.swift in Sources */,
 				CC0055 /* AppIconFetcher.swift in Sources */,
+				CC0057 /* EventLogDebugView.swift in Sources */,
+				CC0059 /* EventType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,12 +31,12 @@ struct SetupGuideView: View {
                         stepRow(number: 1, text: "Open the **Shortcuts** app → **Automation** tab")
                         stepRow(number: 2, text: "Tap **+** → choose **App** as the trigger")
                         stepRow(number: 3, text: "Tap **Choose** and select every app you want to track")
-                        stepRow(number: 4, text: "Make sure **Is Opened** is checked")
-                        stepRow(number: 5, text: "Set to **Run Immediately** → tap **New Blank Automation**")
+                        stepRow(number: 4, text: "Check **Is Opened** only → set to **Run Immediately**")
+                        stepRow(number: 5, text: "Tap **New Blank Automation**")
                         stepRow(number: 6, text: "Add a **Scripting** action: **Get Name of Current App**")
                         stepRow(number: 7, text: "Add Chronicle's **\"Log App Event\"** action below it")
-                        stepRow(number: 8, text: "Set the **App Name** to the **Current App Name** variable from step 6")
-                        stepRow(number: 9, text: "Tap **Done**")
+                        stepRow(number: 8, text: "Set **App Name** to **Current App Name** and **Event Type** to **Opened**")
+                        stepRow(number: 9, text: "Tap **Done** — then repeat steps 2–8 for a second automation with **Is Closed** and **Event Type** set to **Closed**")
                     }
                     .padding()
                     .background(.quaternary.opacity(0.3), in: RoundedRectangle(cornerRadius: 16))
@@ -46,13 +46,26 @@ struct SetupGuideView: View {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "lightbulb.fill")
                             .foregroundStyle(.yellow)
-                        Text("**To track new apps later**, just edit this automation and add more apps to the trigger.")
+                        Text("**To track new apps later**, just edit both automations and add more apps to the triggers.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
                     .padding()
                     .background(.yellow.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
                     .padding(.horizontal)
+
+                    // Debug: raw event log
+                    NavigationLink {
+                        EventLogDebugView()
+                    } label: {
+                        Label("View Raw Events", systemImage: "list.bullet.rectangle")
+                            .font(.subheadline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.quaternary.opacity(0.5), in: RoundedRectangle(cornerRadius: 14))
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 8)
 
                     // Delete all data
                     Button(role: .destructive) {
@@ -65,7 +78,6 @@ struct SetupGuideView: View {
                             .background(.red.opacity(0.1), in: RoundedRectangle(cornerRadius: 14))
                     }
                     .padding(.horizontal)
-                    .padding(.top, 8)
                 }
                 .padding(.bottom, 32)
             }

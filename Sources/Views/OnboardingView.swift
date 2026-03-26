@@ -46,8 +46,8 @@ struct OnboardingView: View {
             VStack(alignment: .leading, spacing: 20) {
                 featureRow(
                     icon: "arrow.triangle.branch",
-                    title: "One Shortcut",
-                    description: "A single Shortcuts automation detects when you open any tracked app and tells Chronicle."
+                    title: "Two Shortcuts",
+                    description: "Two quick Shortcuts automations detect when you open and close any tracked app and tell Chronicle."
                 )
 
                 featureRow(
@@ -85,7 +85,7 @@ struct OnboardingView: View {
             Text("One-Time Setup")
                 .font(.title2.weight(.bold))
 
-            Text("Create one automation in Shortcuts — it takes about a minute. You can always find these instructions again via the ⓘ button.")
+            Text("Create two automations in Shortcuts — it takes about two minutes. You can always find these instructions again via the ⓘ button.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
