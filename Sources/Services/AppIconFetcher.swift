@@ -7,8 +7,9 @@ final class AppIconFetcher: ObservableObject {
     /// In-memory cache of loaded images
     private var memoryCache: [String: UIImage] = [:]
 
-    /// Apps we've already attempted to fetch (avoid retrying failures)
-    private var attempted: Set<String> = []
+    /// Apps we've attempted to fetch, with the date of the last attempt.
+    /// Failed fetches are retried after 24 hours.
+    private var attempted: [String: Date] = [:]
 
     /// Known Apple apps → SF Symbol mapping (not on App Store)
     private static let sfSymbols: [String: String] = [
@@ -51,6 +52,7 @@ final class AppIconFetcher: ObservableObject {
 
     private init() {
         loadAttemptedSet()
+        migrateClearIconCache()
     }
 
     /// Returns cached icon or nil. Triggers a background fetch if not yet attempted.
@@ -65,8 +67,8 @@ final class AppIconFetcher: ObservableObject {
             return diskImage
         }
 
-        // Trigger fetch if we haven't tried yet
-        if !attempted.contains(appName) {
+        // Trigger fetch if we haven't tried recently
+        if !isRecentlyAttempted(appName) {
             Task {
                 await fetchAndCache(appName: appName)
             }
@@ -82,22 +84,24 @@ final class AppIconFetcher: ObservableObject {
 
     /// Force a fetch attempt (e.g. called from the intent on first event)
     func fetchIfNeeded(appName: String) async {
-        guard !attempted.contains(appName) else { return }
-        guard loadFromDisk(appName: appName) == nil else {
-            attempted.insert(appName)
-            return
-        }
+        guard !isRecentlyAttempted(appName) else { return }
+        guard loadFromDisk(appName: appName) == nil else { return }
         await fetchAndCache(appName: appName)
     }
 
     // MARK: - Private
 
+    private func isRecentlyAttempted(_ appName: String) -> Bool {
+        guard let lastAttempt = attempted[appName] else { return false }
+        return Date().timeIntervalSince(lastAttempt) < 86_400 // 24 hours
+    }
+
     private func fetchAndCache(appName: String) async {
-        attempted.insert(appName)
+        attempted[appName] = Date()
         saveAttemptedSet()
 
-        // Skip Apple apps — they use SF Symbols
-        if Self.sfSymbols[appName] != nil { return }
+        // Skip Apple apps (SF Symbols) and our own app (bundled icon)
+        if Self.sfSymbols[appName] != nil || appName == "Chronicle" { return }
 
         guard let url = searchURL(for: appName) else { return }
 
@@ -105,6 +109,7 @@ final class AppIconFetcher: ObservableObject {
             let (data, _) = try await URLSession.shared.data(from: url)
             guard let result = try? JSONDecoder().decode(ITunesSearchResult.self, from: data),
                   let firstApp = result.results.first,
+                  isGoodMatch(searchName: appName, trackName: firstApp.trackName ?? ""),
                   let iconURL = URL(string: firstApp.artworkUrl512 ?? firstApp.artworkUrl100) else {
                 return
             }
@@ -113,10 +118,19 @@ final class AppIconFetcher: ObservableObject {
             guard let image = UIImage(data: imageData) else { return }
 
             saveToDisk(appName: appName, data: imageData)
+            attempted.removeValue(forKey: appName)
+            saveAttemptedSet()
             memoryCache[appName] = image
         } catch {
             // Silently fail — colored square fallback is fine
         }
+    }
+
+    private func isGoodMatch(searchName: String, trackName: String) -> Bool {
+        let search = searchName.lowercased()
+        let track = trackName.lowercased()
+        // Either name contains the other (handles "Discord" vs "Discord - Chat, Talk & Hangout")
+        return search.contains(track) || track.contains(search)
     }
 
     private func searchURL(for appName: String) -> URL? {
@@ -153,19 +167,42 @@ final class AppIconFetcher: ObservableObject {
         return UIImage(data: data)
     }
 
+    /// One-time migration: clear all cached icons so they are re-fetched with name validation.
+    private func migrateClearIconCache() {
+        let key = "didMigrateIconValidation"
+        guard !UserDefaults.standard.bool(forKey: key) else { return }
+        UserDefaults.standard.set(true, forKey: key)
+
+        // Remove all cached icon PNGs (but keep attempted.json)
+        if let files = try? FileManager.default.contentsOfDirectory(at: cacheDirectory, includingPropertiesForKeys: nil) {
+            for file in files where file.pathExtension == "png" {
+                try? FileManager.default.removeItem(at: file)
+            }
+        }
+        // Clear in-memory state so everything is re-fetched
+        memoryCache = [:]
+        attempted = [:]
+        saveAttemptedSet()
+    }
+
     private var attemptedSetFile: URL {
         cacheDirectory.appendingPathComponent("attempted.json")
     }
 
     private func saveAttemptedSet() {
-        let data = try? JSONEncoder().encode(Array(attempted))
+        let data = try? JSONEncoder().encode(attempted)
         try? data?.write(to: attemptedSetFile)
     }
 
     private func loadAttemptedSet() {
-        guard let data = try? Data(contentsOf: attemptedSetFile),
-              let list = try? JSONDecoder().decode([String].self, from: data) else { return }
-        attempted = Set(list)
+        guard let data = try? Data(contentsOf: attemptedSetFile) else { return }
+        // Migrate from old format (array of strings) if needed
+        if let dict = try? JSONDecoder().decode([String: Date].self, from: data) {
+            attempted = dict
+        } else if let list = try? JSONDecoder().decode([String].self, from: data) {
+            // Old format: treat all entries as needing a retry now
+            attempted = [:]
+        }
     }
 }
 

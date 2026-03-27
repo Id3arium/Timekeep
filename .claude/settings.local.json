@@ -15,7 +15,9 @@
       "Bash(/tmp/iconvenv/bin/python3 -c \":*)",
       "Bash(qlmanage -t -s 1024 -o /tmp/ /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.svg)",
       "Read(//private/tmp/**)",
-      "Bash(cp /tmp/AppIcon.svg.png /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)"
+      "Bash(cp /tmp/AppIcon.svg.png /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)",
+      "WebFetch(domain:www.androidpolice.com)"
     ]
   }
 }

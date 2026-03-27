@@ -7,7 +7,14 @@ struct AppIconSquare: View {
     @ObservedObject private var iconFetcher = AppIconFetcher.shared
 
     var body: some View {
-        if let image = iconFetcher.icon(for: appName) {
+        if appName == "Chronicle", let appIcon = UIImage(named: "AppIcon") {
+            // Our own app — use the bundled icon
+            Image(uiImage: appIcon)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: size, height: size)
+                .clipShape(RoundedRectangle(cornerRadius: size * 0.22))
+        } else if let image = iconFetcher.icon(for: appName) {
             // Real app icon from App Store
             Image(uiImage: image)
                 .resizable()

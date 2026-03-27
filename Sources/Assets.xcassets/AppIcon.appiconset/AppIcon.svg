@@ -8,38 +8,36 @@
       <stop offset="0%" stop-color="#E85D5D"/>
       <stop offset="100%" stop-color="#D14545"/>
     </linearGradient>
+    <!-- Clip the bookmark so it doesn't extend above the book -->
+    <clipPath id="bookClip">
+      <rect x="0" y="100" width="1024" height="924"/>
+    </clipPath>
   </defs>
 
   <!-- Background -->
   <rect width="1024" height="1024" fill="url(#bg)"/>
 
   <!-- Drop shadow -->
-  <rect x="298" y="248" width="420" height="560" rx="12" ry="12" fill="rgba(0,0,0,0.15)"/>
+  <rect x="238" y="108" width="560" height="780" rx="32" ry="32" fill="rgba(0,0,0,0.12)"/>
 
-  <!-- Journal body -->
-  <rect x="290" y="240" width="420" height="560" rx="10" ry="10" fill="#E3DACC"/>
+  <!-- Journal body - centered (512 - 280 = 232) -->
+  <rect x="232" y="100" width="560" height="780" rx="28" ry="28" fill="#E3DACC"/>
 
   <!-- Spine -->
-  <rect x="290" y="240" width="36" height="560" rx="10" ry="0" fill="#C9BBAA"/>
-  <rect x="308" y="240" width="18" height="560" fill="#E3DACC"/>
-  <!-- Spine line -->
-  <line x1="326" y1="240" x2="326" y2="800" stroke="#D4C8B8" stroke-width="2"/>
+  <rect x="232" y="100" width="50" height="780" rx="28" ry="0" fill="#C9BBAA"/>
+  <rect x="257" y="100" width="25" height="780" fill="#E3DACC"/>
+  <line x1="282" y1="100" x2="282" y2="880" stroke="#D4C8B8" stroke-width="2.5"/>
 
-  <!-- Cover detail - embossed rectangle suggesting title area -->
-  <rect x="370" y="380" width="280" height="160" rx="6" ry="6" fill="none" stroke="#D4C8B8" stroke-width="3"/>
+  <!-- Cover detail - embossed rectangle -->
+  <rect x="350" y="310" width="370" height="220" rx="10" ry="10" fill="none" stroke="#D4C8B8" stroke-width="3.5"/>
 
-  <!-- Small decorative line inside the embossed area -->
-  <line x1="420" y1="480" x2="600" y2="480" stroke="#D4C8B8" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Decorative line inside embossed area -->
+  <line x1="415" y1="440" x2="655" y2="440" stroke="#D4C8B8" stroke-width="3" stroke-linecap="round"/>
 
   <!-- Page edges visible at bottom -->
-  <line x1="300" y1="790" x2="700" y2="790" stroke="#F0E8DF" stroke-width="3" stroke-linecap="round"/>
-  <line x1="300" y1="785" x2="700" y2="785" stroke="#F5EEE5" stroke-width="2" stroke-linecap="round"/>
+  <line x1="248" y1="866" x2="778" y2="866" stroke="#F0E8DF" stroke-width="4" stroke-linecap="round"/>
+  <line x1="248" y1="859" x2="778" y2="859" stroke="#F5EEE5" stroke-width="3" stroke-linecap="round"/>
 
-  <!-- Bookmark ribbon - prominent, extending above the journal -->
-  <path d="M 560 190 L 560 620 L 590 580 L 620 620 L 620 190 Z" fill="url(#ribbon)"/>
-  <!-- Ribbon top tucked behind book - covered by journal top edge -->
-  <rect x="290" y="240" width="420" height="14" rx="10" ry="10" fill="#E3DACC"/>
-  <!-- Re-draw spine top to stay on top -->
-  <rect x="290" y="240" width="36" height="14" rx="10" ry="0" fill="#C9BBAA"/>
-  <rect x="308" y="240" width="18" height="14" fill="#E3DACC"/>
+  <!-- Bookmark ribbon - starts at top of book, hangs down ~1/3 -->
+  <path d="M 620 100 L 620 400 L 655 350 L 690 400 L 690 100 Z" fill="url(#ribbon)"/>
 </svg>
