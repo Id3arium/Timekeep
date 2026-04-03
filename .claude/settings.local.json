@@ -17,7 +17,10 @@
       "Read(//private/tmp/**)",
       "Bash(cp /tmp/AppIcon.svg.png /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)",
-      "WebFetch(domain:www.androidpolice.com)"
+      "WebFetch(domain:www.androidpolice.com)",
+      "Bash(xcodebuild -list)",
+      "Bash(plutil -lint /Users/alejandro/Projects/Code/iOS/ReSign/ReSign/Info.plist)",
+      "Bash(plutil -lint /Users/alejandro/Projects/Code/iOS/ReSign/ReSign/ReSign.entitlements)"
     ]
   }
 }

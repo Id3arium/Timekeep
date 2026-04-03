@@ -19,7 +19,7 @@ struct LogAppEventIntent: AppIntent {
         let appName = appName.trimmingCharacters(in: .whitespaces)
         guard !appName.isEmpty else { return .result() }
 
-        let container = try ModelContainer(for: AppEvent.self)
+        let container = try SharedContainer.make()
         let context = ModelContext(container)
         let event = AppEvent(appName: appName, eventType: eventType.rawValue, timestamp: .now)
         context.insert(event)

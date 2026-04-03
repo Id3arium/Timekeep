@@ -13,6 +13,6 @@ struct ChronicleApp: App {
                 OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
             }
         }
-        .modelContainer(for: AppEvent.self)
+        .modelContainer(try! SharedContainer.make())
     }
 }
