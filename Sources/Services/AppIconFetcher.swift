@@ -101,7 +101,7 @@ final class AppIconFetcher: ObservableObject {
         saveAttemptedSet()
 
         // Skip Apple apps (SF Symbols) and our own app (bundled icon)
-        if Self.sfSymbols[appName] != nil || appName == "Chronicle" { return }
+        if Self.sfSymbols[appName] != nil || appName == "Timekeep" { return }
 
         guard let url = searchURL(for: appName) else { return }
 

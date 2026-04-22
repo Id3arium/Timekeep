@@ -1,6 +1,6 @@
 import AppIntents
 
-struct ChronicleShortcuts: AppShortcutsProvider {
+struct TimekeepShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: LogAppEventIntent(),

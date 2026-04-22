@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC0001 /* ChronicleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0002 /* ChronicleApp.swift */; };
+		A973F4F52F8032E200B983D9 /* SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973F4F42F8032E200B983D9 /* SharedContainer.swift */; };
+		CC0001 /* TimekeepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0002 /* TimekeepApp.swift */; };
 		CC0005 /* AppEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0006 /* AppEvent.swift */; };
 		CC0007 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0008 /* Session.swift */; };
 		CC0011 /* SessionComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0012 /* SessionComputer.swift */; };
@@ -37,7 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CC0002 /* ChronicleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronicleApp.swift; sourceTree = "<group>"; };
+		A973F4F42F8032E200B983D9 /* SharedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedContainer.swift; sourceTree = "<group>"; };
+		CC0002 /* TimekeepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimekeepApp.swift; sourceTree = "<group>"; };
 		CC0006 /* AppEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEvent.swift; sourceTree = "<group>"; };
 		CC0008 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		CC0012 /* SessionComputer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionComputer.swift; sourceTree = "<group>"; };
@@ -59,12 +61,12 @@
 		CC0048 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		CC0050 /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
 		CC0052 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
-		CC0060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC0070 /* Chronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0054 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
 		CC0056 /* AppIconFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconFetcher.swift; sourceTree = "<group>"; };
 		CC0058 /* EventLogDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogDebugView.swift; sourceTree = "<group>"; };
+		CC0060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC0061 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		CC0070 /* Timekeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timekeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +84,7 @@
 		CC0100 = {
 			isa = PBXGroup;
 			children = (
-				CC0101 /* Chronicle */,
+				CC0101 /* Sources */,
 				CC0102 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,7 +92,7 @@
 		CC0101 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CC0002 /* ChronicleApp.swift */,
+				CC0002 /* TimekeepApp.swift */,
 				CC0103 /* Models */,
 				CC0104 /* Services */,
 				CC0105 /* Intents */,
@@ -105,7 +107,7 @@
 		CC0102 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC0070 /* Chronicle.app */,
+				CC0070 /* Timekeep.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +118,7 @@
 				CC0006 /* AppEvent.swift */,
 				CC0061 /* EventType.swift */,
 				CC0008 /* Session.swift */,
+				A973F4F42F8032E200B983D9 /* SharedContainer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,7 +138,7 @@
 			children = (
 				CC0016 /* LogAppEventIntent.swift */,
 				CC0054 /* AppShortcuts.swift */,
-);
+			);
 			path = Intents;
 			sourceTree = "<group>";
 		};
@@ -213,9 +216,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC0200 /* Chronicle */ = {
+		CC0200 /* Timekeep */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC0300 /* Build configuration list for PBXNativeTarget "Chronicle" */;
+			buildConfigurationList = CC0300 /* Build configuration list for PBXNativeTarget "Timekeep" */;
 			buildPhases = (
 				CC0201 /* Sources */,
 				CC0080 /* Frameworks */,
@@ -225,9 +228,9 @@
 			);
 			dependencies = (
 			);
-			name = Chronicle;
-			productName = Chronicle;
-			productReference = CC0070 /* Chronicle.app */;
+			name = Timekeep;
+			productName = Timekeep;
+			productReference = CC0070 /* Timekeep.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +243,7 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 			};
-			buildConfigurationList = CC0500 /* Build configuration list for PBXProject "Chronicle" */;
+			buildConfigurationList = CC0500 /* Build configuration list for PBXProject "Timekeep" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -253,7 +256,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC0200 /* Chronicle */,
+				CC0200 /* Timekeep */,
 			);
 		};
 /* End PBXProject section */
@@ -274,7 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC0001 /* ChronicleApp.swift in Sources */,
+				CC0001 /* TimekeepApp.swift in Sources */,
 				CC0005 /* AppEvent.swift in Sources */,
 				CC0007 /* Session.swift in Sources */,
 				CC0011 /* SessionComputer.swift in Sources */,
@@ -288,6 +291,7 @@
 				CC0027 /* UsageBarChart.swift in Sources */,
 				CC0029 /* AppUsageRow.swift in Sources */,
 				CC0031 /* AppDetailView.swift in Sources */,
+				A973F4F52F8032E200B983D9 /* SharedContainer.swift in Sources */,
 				CC0033 /* SessionRow.swift in Sources */,
 				CC0035 /* SetupGuideView.swift in Sources */,
 				CC0041 /* HeroStatCard.swift in Sources */,
@@ -320,7 +324,7 @@
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Chronicle;
+				INFOPLIST_KEY_CFBundleDisplayName = Timekeep;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
@@ -333,7 +337,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aurende.chronicle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aurende.timekeep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -357,7 +361,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Chronicle;
+				INFOPLIST_KEY_CFBundleDisplayName = Timekeep;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
@@ -370,7 +374,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aurende.chronicle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aurende.timekeep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -498,7 +502,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CC0300 /* Build configuration list for PBXNativeTarget "Chronicle" */ = {
+		CC0300 /* Build configuration list for PBXNativeTarget "Timekeep" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC0301 /* Debug */,
@@ -507,7 +511,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC0500 /* Build configuration list for PBXProject "Chronicle" */ = {
+		CC0500 /* Build configuration list for PBXProject "Timekeep" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC0501 /* Debug */,

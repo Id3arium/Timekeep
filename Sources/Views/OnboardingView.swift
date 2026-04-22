@@ -22,7 +22,7 @@ struct OnboardingView: View {
                 .font(.system(size: 72))
                 .foregroundStyle(.blue)
 
-            Text("Chronicle")
+            Text("Timekeep")
                 .font(.largeTitle.weight(.bold))
 
             Text("Your personal screen time story")
@@ -47,13 +47,13 @@ struct OnboardingView: View {
                 featureRow(
                     icon: "arrow.triangle.branch",
                     title: "Two Shortcuts",
-                    description: "Two quick Shortcuts automations detect when you open and close any tracked app and tell Chronicle."
+                    description: "Two quick Shortcuts automations detect when you open and close any tracked app and tell Timekeep."
                 )
 
                 featureRow(
                     icon: "clock",
                     title: "Session Tracking",
-                    description: "Chronicle figures out when you left an app by seeing when you opened the next one."
+                    description: "Timekeep figures out when you left an app by seeing when you opened the next one."
                 )
 
                 featureRow(

@@ -18,7 +18,7 @@ struct SetupGuideView: View {
                         Text("One-Time Setup")
                             .font(.title2.weight(.bold))
 
-                        Text("Create a single Shortcuts automation and Chronicle tracks every app you use.")
+                        Text("Create a single Shortcuts automation and Timekeep tracks every app you use.")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -34,7 +34,7 @@ struct SetupGuideView: View {
                         stepRow(number: 4, text: "Check **Is Opened** only → set to **Run Immediately**")
                         stepRow(number: 5, text: "Tap **New Blank Automation**")
                         stepRow(number: 6, text: "Add a **Scripting** action: **Get Name of Current App**")
-                        stepRow(number: 7, text: "Add Chronicle's **\"Log App Event\"** action below it")
+                        stepRow(number: 7, text: "Add Timekeep's **\"Log App Event\"** action below it")
                         stepRow(number: 8, text: "Set **App Name** to **Current App Name** and **Event Type** to **Opened**")
                         stepRow(number: 9, text: "Tap **Done** — then repeat steps 2–8 for a second automation with **Is Closed** and **Event Type** set to **Closed**")
                     }

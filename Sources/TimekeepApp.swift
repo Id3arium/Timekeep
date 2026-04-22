@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct ChronicleApp: App {
+struct TimekeepApp: App {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some Scene {

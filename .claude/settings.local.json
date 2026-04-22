@@ -1,10 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(chmod +x /Users/alejandro/Projects/Code/Chronicle/build.sh)",
-      "Bash(xcodebuild -scheme Chronicle -project Chronicle.xcodeproj -destination \"generic/platform=iOS Simulator\" -quiet)",
-      "Bash(xcodebuild -project Chronicle.xcodeproj -scheme Chronicle -destination 'platform=iOS Simulator,name=iPhone 16' build)",
-      "Bash(xcodebuild -project Chronicle.xcodeproj -scheme Chronicle -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.4' build)",
       "Bash(python3 -c \"from PIL import Image; print\\(''''pillow available''''\\)\")",
       "Bash(python3 -c \"import cairosvg; print\\(''''cairosvg available''''\\)\")",
       "Bash(brew list:*)",
@@ -13,14 +9,12 @@
       "Bash(python3 -m venv /tmp/iconvenv)",
       "Bash(/tmp/iconvenv/bin/pip install:*)",
       "Bash(/tmp/iconvenv/bin/python3 -c \":*)",
-      "Bash(qlmanage -t -s 1024 -o /tmp/ /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.svg)",
       "Read(//private/tmp/**)",
-      "Bash(cp /tmp/AppIcon.svg.png /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)",
-      "Bash(sips -g pixelWidth -g pixelHeight /Users/alejandro/Projects/Code/Chronicle/Sources/Assets.xcassets/AppIcon.appiconset/AppIcon.png)",
       "WebFetch(domain:www.androidpolice.com)",
       "Bash(xcodebuild -list)",
       "Bash(plutil -lint /Users/alejandro/Projects/Code/iOS/ReSign/ReSign/Info.plist)",
-      "Bash(plutil -lint /Users/alejandro/Projects/Code/iOS/ReSign/ReSign/ReSign.entitlements)"
+      "Bash(plutil -lint /Users/alejandro/Projects/Code/iOS/ReSign/ReSign/ReSign.entitlements)",
+      "Read(//Users/alejandro/Projects/Code/walled_garden/**)"
     ]
   }
 }

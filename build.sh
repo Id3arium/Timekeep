@@ -5,7 +5,7 @@ set -euo pipefail
 # ./build.sh                        # build IPA via Sideloadly path
 # ./build.sh --skip-clean           # skip cleaning build dir
 #
-# Output: build/Chronicle.ipa
+# Output: build/Timekeep.ipa
 # Install: drag into Sideloadly, enter Apple ID, hit Start
 #
 # Note: This build path skips Xcode code signing entirely.
@@ -17,13 +17,13 @@ for arg in "$@"; do
     [ "$arg" = "--skip-clean" ] && SKIP_CLEAN=true
 done
 
-SCHEME="Chronicle"
-PROJECT="Chronicle.xcodeproj"
+SCHEME="Timekeep"
+PROJECT="Timekeep.xcodeproj"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BUILD_DIR="$SCRIPT_DIR/build"
-ARCHIVE_PATH="$BUILD_DIR/Chronicle.xcarchive"
+ARCHIVE_PATH="$BUILD_DIR/Timekeep.xcarchive"
 PAYLOAD_DIR="$BUILD_DIR/Payload"
-IPA_PATH="$BUILD_DIR/Chronicle.ipa"
+IPA_PATH="$BUILD_DIR/Timekeep.ipa"
 
 # ─── Clean ────────────────────────────────────────────────────────────
 if [ "$SKIP_CLEAN" = false ]; then
@@ -65,7 +65,7 @@ mkdir -p "$PAYLOAD_DIR"
 cp -r "$APP_PATH" "$PAYLOAD_DIR/"
 
 cd "$BUILD_DIR"
-zip -r Chronicle.ipa Payload/ -q
+zip -r Timekeep.ipa Payload/ -q
 rm -rf Payload/
 
 # ─── Done ─────────────────────────────────────────────────────────────
@@ -76,7 +76,7 @@ if [ -f "$IPA_PATH" ]; then
     echo ""
     echo "    Next steps:"
     echo "    1. Open Sideloadly"
-    echo "    2. Drag build/Chronicle.ipa into Sideloadly"
+    echo "    2. Drag build/Timekeep.ipa into Sideloadly"
     echo "    3. Enter your Apple ID"
     echo "    4. Hit Start"
     echo "    5. On phone: Settings → General → VPN & Device Management → Trust"
