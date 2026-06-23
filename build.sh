@@ -1,86 +1,147 @@
 #!/bin/bash
+# Build Timekeep.app, sign it with your Apple ID, and install to your iPhone.
+#
+# Standalone: needs only Xcode's command-line tools and an Apple ID signed in
+# to Xcode (Settings → Accounts). No Sideloadly, no ReSign, no Xcode GUI build.
+# ReSign can also build this project on its own for auto-renewal, but it is not
+# required — this script is the self-contained path.
+#
+# Usage:
+#   ./build.sh                 # build, sign, install to connected iPhone (default)
+#   ./build.sh --no-install    # build + sign only, stage into ./build/Timekeep.app
+#   ./build.sh -n              # short form of --no-install
+#   ./build.sh --device <id>   # target a specific device (else first available)
+#   ./build.sh -v              # verbose xcodebuild output
+#   ./build.sh -h              # show this help
+
 set -euo pipefail
 
-# ─── Usage ────────────────────────────────────────────────────────────
-# ./build.sh                        # build IPA via Sideloadly path
-# ./build.sh --skip-clean           # skip cleaning build dir
-#
-# Output: build/Timekeep.ipa
-# Install: drag into Sideloadly, enter Apple ID, hit Start
-#
-# Note: This build path skips Xcode code signing entirely.
-# Sideloadly re-signs the IPA with your Apple ID on install.
-# ──────────────────────────────────────────────────────────────────────
+APP_NAME=Timekeep
+PROJECT="$APP_NAME.xcodeproj"
+SCHEME="$APP_NAME"
+INSTALL=1
+VERBOSE=0
+DEVICE_ID=""
 
-SKIP_CLEAN=false
-for arg in "$@"; do
-    [ "$arg" = "--skip-clean" ] && SKIP_CLEAN=true
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -n|--no-install) INSTALL=0 ;;
+        -v|--verbose)    VERBOSE=1 ;;
+        --device)        shift; DEVICE_ID="${1:-}" ;;
+        -h|--help)
+            sed -n '8,17p' "$0" | sed 's/^# \{0,1\}//'
+            exit 0
+            ;;
+        *)
+            echo "error: unknown flag '$1'. Run '$0 --help' for usage."
+            exit 1
+            ;;
+    esac
+    shift
 done
 
-SCHEME="Timekeep"
-PROJECT="Timekeep.xcodeproj"
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BUILD_DIR="$SCRIPT_DIR/build"
-ARCHIVE_PATH="$BUILD_DIR/Timekeep.xcarchive"
-PAYLOAD_DIR="$BUILD_DIR/Payload"
-IPA_PATH="$BUILD_DIR/Timekeep.ipa"
+cd "$(dirname "$0")"
 
-# ─── Clean ────────────────────────────────────────────────────────────
-if [ "$SKIP_CLEAN" = false ]; then
-    echo "==> Cleaning build directory..."
-    rm -rf "$BUILD_DIR"
-fi
-mkdir -p "$BUILD_DIR"
-
-# ─── Archive (no signing) ─────────────────────────────────────────────
-echo ""
-echo "==> Archiving (signing disabled)..."
-xcodebuild archive \
-    -scheme "$SCHEME" \
-    -project "$SCRIPT_DIR/$PROJECT" \
-    -archivePath "$ARCHIVE_PATH" \
-    -destination "generic/platform=iOS" \
-    CODE_SIGNING_REQUIRED=NO \
-    CODE_SIGN_IDENTITY="" \
-    AD_HOC_CODE_SIGNING_ALLOWED=YES \
-    -quiet
-
-echo "    Archive created."
-
-# ─── Find .app inside archive ─────────────────────────────────────────
-APP_PATH=$(find "$ARCHIVE_PATH/Products/Applications" -name "*.app" -maxdepth 1 | head -1)
-
-if [ -z "$APP_PATH" ]; then
-    echo "ERROR: Could not find .app in archive. Build may have failed."
-    exit 1
+# 1. Regenerate project from project.yml if this project uses xcodegen.
+#    (Timekeep currently commits its .xcodeproj directly, so this is a no-op
+#    guard that keeps the script correct if it migrates to xcodegen later.)
+if [ -f "project.yml" ]; then
+    if ! command -v xcodegen >/dev/null 2>&1; then
+        echo "error: xcodegen not installed. Install with: brew install xcodegen"
+        exit 1
+    fi
+    echo "→ xcodegen generate"
+    xcodegen generate --quiet
 fi
 
-echo "    Found: $(basename "$APP_PATH")"
+# 2. Build + sign. Debug into a controlled derived-data dir so we know exactly
+#    where the .app lands — same contract ReSign uses. -allowProvisioningUpdates
+#    lets Xcode create/refresh the free-account provisioning profile headlessly.
+DERIVED_DATA="$PWD/build/DerivedData"
+mkdir -p "$DERIVED_DATA"
 
-# ─── Package into IPA ─────────────────────────────────────────────────
-echo ""
-echo "==> Packaging IPA..."
-rm -rf "$PAYLOAD_DIR"
-mkdir -p "$PAYLOAD_DIR"
-cp -r "$APP_PATH" "$PAYLOAD_DIR/"
+echo "→ xcodebuild ($APP_NAME, Debug, signed)"
+XCB_ARGS=(
+    -project "$PROJECT"
+    -scheme "$SCHEME"
+    -configuration Debug
+    -destination 'generic/platform=iOS'
+    -derivedDataPath "$DERIVED_DATA"
+    -allowProvisioningUpdates
+    clean build
+)
 
-cd "$BUILD_DIR"
-zip -r Timekeep.ipa Payload/ -q
-rm -rf Payload/
-
-# ─── Done ─────────────────────────────────────────────────────────────
-if [ -f "$IPA_PATH" ]; then
-    SIZE=$(du -h "$IPA_PATH" | cut -f1)
-    echo ""
-    echo "==> Done! $IPA_PATH ($SIZE)"
-    echo ""
-    echo "    Next steps:"
-    echo "    1. Open Sideloadly"
-    echo "    2. Drag build/Timekeep.ipa into Sideloadly"
-    echo "    3. Enter your Apple ID"
-    echo "    4. Hit Start"
-    echo "    5. On phone: Settings → General → VPN & Device Management → Trust"
+if [ "$VERBOSE" = "1" ]; then
+    xcodebuild "${XCB_ARGS[@]}"
+elif command -v xcbeautify >/dev/null 2>&1; then
+    set -o pipefail
+    xcodebuild "${XCB_ARGS[@]}" | xcbeautify
 else
-    echo "ERROR: IPA not found at $IPA_PATH"
+    set -o pipefail
+    # Surface the actionable signing errors; otherwise just the build verdict.
+    if ! xcodebuild "${XCB_ARGS[@]}" 2>&1 | tee "$DERIVED_DATA/build.log" \
+        | grep -E "(error|warning): |\*\* BUILD (SUCCEEDED|FAILED) \*\*"; then
+        :
+    fi
+    if grep -q "No Accounts\|No profiles for\|Signing for" "$DERIVED_DATA/build.log" 2>/dev/null; then
+        echo "error: code signing failed. Open Xcode → Settings → Accounts and sign in"
+        echo "       with your Apple ID, then set DEVELOPMENT_TEAM in Config.xcconfig"
+        echo "       (copy it from Config.xcconfig.example) and re-run ./build.sh."
+        exit 1
+    fi
+fi
+
+APP_PATH="$DERIVED_DATA/Build/Products/Debug-iphoneos/$APP_NAME.app"
+if [ ! -d "$APP_PATH" ]; then
+    echo "error: .app not found at $APP_PATH. Re-run with -v to see full xcodebuild output."
     exit 1
+fi
+
+# 3. Stage a copy into ./build for convenience / inspection.
+OUT_DIR="build"
+rm -rf "$OUT_DIR/$APP_NAME.app"
+cp -R "$APP_PATH" "$OUT_DIR/"
+echo "✓ Built & signed: $OUT_DIR/$APP_NAME.app"
+
+# 4. Install to the connected iPhone via devicectl.
+if [ "$INSTALL" = "1" ]; then
+    if [ -z "$DEVICE_ID" ]; then
+        # First "available" device's identifier (a UUID). Match the UUID by shape
+        # rather than column position — the Name/Model columns have a variable
+        # word count, so counting fields is unreliable.
+        DEVICE_ID=$(xcrun devicectl list devices 2>/dev/null \
+            | grep available \
+            | grep -oE '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}' \
+            | head -1)
+    fi
+    if [ -z "$DEVICE_ID" ]; then
+        echo "error: no iPhone found. Connect via USB (and unlock it) or pair over Wi-Fi"
+        echo "       in Xcode → Window → Devices and Simulators, then re-run ./build.sh."
+        echo "       The .app is staged at $OUT_DIR/$APP_NAME.app if you want it."
+        exit 1
+    fi
+
+    echo "→ Installing to device $DEVICE_ID"
+    # devicectl occasionally drops the device link mid-install with a transient
+    # "Connection interrupted" (CoreDeviceError 3002). Retry a couple of times
+    # before giving up — the identical command usually succeeds on the next try.
+    installed=0
+    for attempt in 1 2 3; do
+        if xcrun devicectl device install app --device "$DEVICE_ID" "$APP_PATH"; then
+            installed=1
+            break
+        fi
+        echo "  install attempt $attempt failed (transient device-link error); retrying..."
+        sleep 2
+    done
+    if [ "$installed" = "1" ]; then
+        echo "✓ $APP_NAME installed. Launch it from your home screen."
+    else
+        echo "error: install failed after 3 attempts. Make sure the iPhone is unlocked"
+        echo "       and stays connected, then re-run ./build.sh. The signed .app is at"
+        echo "       $OUT_DIR/$APP_NAME.app."
+        exit 1
+    fi
+else
+    echo "  (--no-install) Skipped device install."
 fi

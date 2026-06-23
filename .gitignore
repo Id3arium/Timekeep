@@ -4,4 +4,12 @@ build/
 # Xcode
 xcuserdata/
 *.xcuserstate
+*.xcscmblueprint
 DerivedData/
+
+# Local signing config (your Apple Team ID)
+Config.xcconfig
+
+# Machine-specific
+.DS_Store
+.claude/settings.local.json
