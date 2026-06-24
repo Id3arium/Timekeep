@@ -1,25 +1,21 @@
 # Timekeep
 
-A screen time tracker that gives you the **timestamps**, so you never have to guess
-*when* you did what.
+A screen time tracker that keeps the **timestamps**, so you can see *when* you used each
+app, not just how long.
 
 ## Why this exists
 
-Apple's built-in Screen Time tells you that you spent, say, 47 minutes in a messaging app
-today. It will not tell you *when*. Was it one long stretch at 2am, or six scattered
-check-ins through the day? The raw timeline is your own behavior, on your own phone, and
-the system simply won't hand it to you. You get aggregates and you're expected to be
-content with them. It's second-class access to your own data.
+Apple's Screen Time tells you that you spent 47 minutes in a messaging app today. It
+won't tell you whether that was one long stretch at 2am or six check-ins across the day.
+The timeline is the interesting part, and it's the part you don't get to see.
 
-Timekeep gives you the timeline back: every session with its actual start and end time,
-so you can see the *shape* of your usage, not just a daily total.
+Timekeep keeps that timeline: every session with its real start and end time.
 
-Getting at that data is admittedly roundabout. iOS has no public API that hands an app
-your usage history, so Timekeep can't just read it. Instead, two **Shortcuts automations**
-you set up once tell it whenever you open or close a tracked app, and from that stream of
-timestamped open/close events Timekeep reconstructs your sessions and charts where your
-time goes. It's a workaround, but it's the only way to get this, and everything stays on
-your device.
+There's no public iOS API that will just hand an app your usage history, so Timekeep
+builds it from the other direction. You set up two **Shortcuts automations** once, and
+they tell Timekeep each time you open or close an app. It reconstructs your sessions from
+those events. It's a roundabout setup, but it's the only way to get this, and nothing
+ever leaves your phone.
 
 ## How it works
 
