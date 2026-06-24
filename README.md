@@ -1,13 +1,25 @@
 # Timekeep
 
-Your personal screen time story — a self-tracking iOS app that turns "which apps am I
-actually using" into daily and weekly analytics, without Screen Time APIs or any data
-leaving your phone.
+A screen time tracker that gives you the **timestamps** — so you never have to guess
+*when* you did what.
 
-Timekeep doesn't watch you in the background. Instead, two **Shortcuts automations** you
-set up once tell it whenever you open or close a tracked app. From that stream of
-open/close events Timekeep reconstructs your usage sessions and charts where your time
-goes.
+## Why this exists
+
+Apple's built-in Screen Time tells you that you spent, say, 47 minutes in a messaging app
+today. It will not tell you *when* — was it one long stretch at 2am, or six scattered
+check-ins through the day? The raw timeline is your own behavior, on your own phone, and
+the system simply won't hand it to you. You get aggregates and you're expected to be
+content with them — second-class access to your own data.
+
+Timekeep gives you the timeline back: every session with its actual start and end time,
+so you can see the *shape* of your usage, not just a daily total.
+
+Getting at that data is admittedly roundabout — iOS has no public API that hands an app
+your usage history, so Timekeep can't just read it. Instead, two **Shortcuts automations**
+you set up once tell it whenever you open or close a tracked app, and from that stream of
+timestamped open/close events Timekeep reconstructs your sessions and charts where your
+time goes. It's a workaround, but it's the only way to get this — and everything stays on
+your device.
 
 ## How it works
 
@@ -25,8 +37,7 @@ All data stays on device. There is no account, server, or network sync.
 
 ## Requirements
 
-- iOS 17.0 or later
-- An iPhone (the app is iPhone-only)
+- An iPhone running iOS 17.0 or later
 - Xcode + command-line tools, and an Apple ID signed in to Xcode (a free Apple ID is
   enough to install to your own device)
 
