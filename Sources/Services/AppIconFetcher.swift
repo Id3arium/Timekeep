@@ -199,8 +199,8 @@ final class AppIconFetcher: ObservableObject {
         // Migrate from old format (array of strings) if needed
         if let dict = try? JSONDecoder().decode([String: Date].self, from: data) {
             attempted = dict
-        } else if let list = try? JSONDecoder().decode([String].self, from: data) {
-            // Old format: treat all entries as needing a retry now
+        } else if (try? JSONDecoder().decode([String].self, from: data)) != nil {
+            // Old format (array of names): drop it so those apps get retried now
             attempted = [:]
         }
     }
