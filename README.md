@@ -58,6 +58,9 @@ re-signing tools required.
 `Config.xcconfig` holds your personal Team ID and is gitignored, so it never gets
 committed.
 
+A free-account signature expires after about 7 days. Re-run `./build.sh` to renew it,
+or use [ReSign](https://github.com/Id3arium/ReSign) to renew automatically.
+
 ## First-run setup (in the app)
 
 After installing, the onboarding walks you through creating the two Shortcuts automations.
